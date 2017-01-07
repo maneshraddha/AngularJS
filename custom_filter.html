@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <style>
+       table, th , td {
+          border: 1px solid grey;
+          border-collapse: collapse;
+          padding: 5px;
+       }
+
+       table tr:nth-child(odd) {
+          background-color: #f2f2f2;
+       }
+
+       table tr:nth-child(even) {
+          background-color: #ffffff;
+       }
+    </style>
+  </head>
+
+
+  <body ng-app = "myApp" ng-controller = "control">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Salery</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat = "employee in employees">
+            <td>{{employee.name}}</td>
+            <td>{{employee.gender | gender}}</td>
+            <td>{{employee.salery}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.filter("gender", function(){
+        return function(gender)
+        {
+          switch(gender){
+            case 1 :
+              return "Male";
+            case 2 :
+              return "Female";
+            case 3 :
+              return "Not Disclosed";
+
+          }
+        }
+      });
+      app.controller("control", function($scope){
+        var employees =[
+          {
+            name : "Shraddha",
+            gender : 2,
+            salery : 5000
+          },
+          {
+            name : "Siddhesh",
+            gender : 1,
+            salery : 71000
+          },
+          {
+            name : "Sunita",
+            gender : 3,
+            salery : 501000
+          }
+        ]
+        $scope.employees = employees;
+      });
+    </script>
+  </body>
+</html>

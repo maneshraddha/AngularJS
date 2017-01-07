@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Filter Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <style>
+       table, th , td {
+          border: 1px solid grey;
+          border-collapse: collapse;
+          padding: 5px;
+       }
+
+       table tr:nth-child(odd) {
+          background-color: #f2f2f2;
+       }
+
+       table tr:nth-child(even) {
+          background-color: #ffffff;
+       }
+    </style>
+  </head>
+
+
+
+  <body ng-app = "myApp" ng-controller = "control">
+    <input type="checkbox" name="hide" value="Hide" ng-model = "hidesal" /> Hide Salery<br><br>
+    Global Search :<input type="text" ng-model = "searchBox"><br>
+    Gender Search :<input type="text" ng-model = "searchBox.gender"><br>
+    Salery Search :<input type="text" ng-model = "searchBox.salery"><br>
+    Exact Search<input type="checkbox" ng-model ="exact">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th ng-hide = "hidesal">Salery</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat = "employee in employees | filter: searchBox:exact">
+            <td>{{employee.name}}</td>
+            <td>{{employee.gender}}</td>
+            <td ng-hide = "hidesal">{{employee.salery}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("control", function($scope){
+        var employees =[
+          {
+            name : "Shraddha",
+            gender : "Female",
+            salery : 5000
+          },
+          {
+            name : "Siddhesh",
+            gender : "Male",
+            salery : 71000
+          },
+          {
+            name : "Sunita",
+            gender : "Female",
+            salery : 501000
+          }
+        ]
+        $scope.employees = employees;
+      });
+    </script>
+  </body>
+</html>

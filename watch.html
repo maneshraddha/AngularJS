@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>watch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <body ng-app ="myApp">
+    <div ng-controller = "control">
+      <input type="text" ng-model = "name">
+      <div>You Entered {{counter}} times</div>
+    </div>
+
+    <script>
+      var app = angular.module("myApp",[])
+      app.controller("control",function($scope){
+        $scope.counter = 0;
+        $scope.$watch("name", function(newValue,oldValue){
+          console.log("New Value :" + newValue);
+          console.log("Old Value :" + oldValue);
+          $scope.counter++;
+        });
+      });
+    </script>
+  </body>
+</html>

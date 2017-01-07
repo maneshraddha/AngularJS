@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="">
+  <head>
+    <meta charset="utf-8">
+    <title>Basic Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <body ng-app = "myApp" ng-controller = "control" >
+    <div>
+      <ul>
+        <li ng-repeat="employee in employees">
+          Name:{{employee.name}}
+          Gender : {{employee.gender}}
+          <ul>
+            <li ng-repeat = "city in employee.city">
+              Cities : {{city.name}}
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div ng-include ="'new.txt'"></div>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("control",function($scope){
+        var employees =[
+          {
+            name : "Shraddha",
+            gender : "Female",
+            city :[{name:"Mumbai"},{name :"Goa"},{name"Jammu"}]
+          },
+          {
+            name : "Siddhesh",
+            gender : "Male",
+            city :[{name:"Mumbai"},{name :"Goa"},{name"Jammu"}]
+          },
+          {
+            name : "Sunita",
+            gender : "Female",
+            city :[{name:"Mumbai"},{name :"Goa"},{name"Jammu"}]
+          }
+        ]
+        $scope.employees = employees;
+      });
+    </script>
+  </body>
+</html>

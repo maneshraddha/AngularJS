@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rang Based Loop</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  </head>
+  <body ng-app = "myApp">
+    <div ng-controller = "cntrl">
+      <li ng-repeat = "i in [1,2,3,4]">
+        {{i}}
+      </li>
+    </div>
+    <script>
+      var app;
+      app = angular.module("myApp", []);
+      app.controller("cntrl",function($scope){
+        var range = 10;
+        var myRange = [];
+        for(var i = 0;i<range;i++)
+        {
+          myRange.push(i);
+        }
+        $scope.myRange = myRange;
+      });
+    </script>
+  </body>
+</html>
